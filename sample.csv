@@ -1,0 +1,27 @@
+
+
+
+
+
+
+
+Customer No 12345789                 
+
+Account Number 1234567890123
+
+
+Account Currency KYD
+
+"Opening Balance  0.00"
+
+
+
+"Closing Balance 1.23"
+
+
+Specified period (11-06-1981 - 11-06-2016)
+
+Transaction Date,  Value Date, Reference, Description, Debit , Credit , Balance
+28-09-2012,30-09-2012,100I1GSKYD 00001,GOV STAMP DUTY   ,"0.50","0.00","380.23"
+25-09-2012,25-09-2012,100PRNU122692052,POS SALE   ,"32.76","0.00","380.73"
+19-09-2012,19-09-2012,100PRNU122635552,POS SALE   ,"229.93","0.00","413.49"
