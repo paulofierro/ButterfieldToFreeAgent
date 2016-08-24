@@ -5,6 +5,12 @@ unless ARGV.length == 2
   exit
 end
 
+# Helper to massage the currency columns
+# The amount cannot contain commas, nor should it contain quote marks
+def fix_currency(amount)
+  return amount.gsub(',', '').gsub('"', '')
+end
+
 # Get the filenames
 input_filename  = ARGV[0]
 output_filename = ARGV[1]
