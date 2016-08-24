@@ -18,7 +18,9 @@ output_filename = ARGV[1]
 # The list of transactions we've parsed
 transactions = []
 
-header_found = false
+header_found  = false
+start_balance = nil
+end_balance   = nil
 
 CSV.foreach(input_filename, quote_char: '"', col_sep: ',', row_sep: :auto, headers: true) do |row|
   
@@ -66,6 +68,30 @@ CSV.foreach(input_filename, quote_char: '"', col_sep: ',', row_sep: :auto, heade
     # Add the transaction
     transactions.push([date, amount, description])
   end
+end
+
+# Perform some final calculations to ensure that the data is correct
+index = 0
+balance = start_balance
+transactions.reverse.each do |transaction|
+  amount = transaction[1].to_f
+  #puts "Balance: #{balance.round(2).to_s}"
+  
+  unless index == 0
+    balance += amount
+  end
+  
+  #puts "\t\tAmount: #{amount.to_s}"
+  #puts "\t\tBalance: #{balance.round(2).to_s}"
+  index += 1
+end
+
+if balance.round(2) != end_balance
+  puts "*** WARNING — There may be a problem!"
+  puts "Start balance: #{start_balance.to_s}"
+  puts "End balance: #{end_balance.to_s}"
+  puts "Calculated end balance: #{balance.round(2).to_s}"
+  puts "There's a discrepancy of $#{(balance-end_balance).abs.round(2).to_s}"
 end
 
 File.open(output_filename, "w") { |f| 
