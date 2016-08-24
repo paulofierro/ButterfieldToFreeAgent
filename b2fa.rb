@@ -29,6 +29,7 @@ CSV.foreach(input_filename, quote_char: '"', col_sep: ',', row_sep: :auto, heade
   end
 
   if header_found
+
     # The date format must be dd/mm/yyyy
     date = row[0].gsub('-', '/')
 
@@ -36,9 +37,9 @@ CSV.foreach(input_filename, quote_char: '"', col_sep: ',', row_sep: :auto, heade
     # Also remove extra whitespace
     description = row[3].gsub('"', '').strip
 
-    # The amount cannot contain commas, nor should it contain quote marks
-    debit   = row[4].gsub(',', '').gsub('"', '')
-    credit  = row[5].gsub(',', '').gsub('"', '')
+    # Get the debit/credit amounts
+    debit   = fix_currency row[4]
+    credit  = fix_currency row[5]
 
     # There should be a single 'amount' column that contains both money paid out and money paid in
     amount = 0
@@ -47,6 +48,13 @@ CSV.foreach(input_filename, quote_char: '"', col_sep: ',', row_sep: :auto, heade
     else
       amount = "-" + debit
     end
+
+    # The list is reversed with the latest at the top so the
+    # end balance is first and the start balance is last
+    unless end_balance
+      end_balance = fix_currency(row[6]).to_f
+    end
+    start_balance = fix_currency(row[6]).to_f
 
     # puts "Row: #{row}"
     # puts "Date: #{date}"
