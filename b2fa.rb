@@ -1,7 +1,7 @@
 require 'csv'
 
-unless ARGV.length == 2
-  puts "Usage: ruby b2fa.rb sample.csv sample-converted.csv"
+unless ARGV.length == 1
+  puts "Usage: ruby b2fa.rb sample.csv"
   exit
 end
 
@@ -13,7 +13,7 @@ end
 
 # Get the filenames
 input_filename  = ARGV[0]
-output_filename = ARGV[1]
+output_filename = "#{input_filename}-converted.csv"
 
 # The list of transactions we've parsed
 transactions = []
