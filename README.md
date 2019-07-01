@@ -5,4 +5,4 @@ A Ruby script that converts a CSV of transactions exported from Butterfield Onli
 The format is explained here: http://www.freeagent.com/support/kb/banking/file-format-for-bank-upload-csv/
 
 **Updated July 1, 2019**
-This version is now deprecated. A new ]Swift version can be found here](https://github.com/paulofierro/B2FA).
+This version is now deprecated. A new [Swift version can be found here](https://github.com/paulofierro/B2FA).
